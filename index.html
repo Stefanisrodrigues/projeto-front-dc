@@ -1,0 +1,95 @@
+=> PRIMEIRA PARTE
+
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const BuyBox = ({
+  name,
+  reference,
+  stars,
+  rating,
+  price,
+  priceDiscount,
+  description,
+  children
+}) => {
+  return (
+    <div className="buy-box">
+      <h1 style={{ fontSize: '32px', color: 'dark-gray' }}>{name}</h1>
+      <p style={{ fontSize: '12px', color: 'dark-gray-3' }}>Código de referência: {reference}</p>
+      
+      <div style={{ display: 'flex', alignItems: 'center', marginTop: '8px' }}>
+        <div
+          style={{
+            fontSize: '14px',
+            backgroundColor: 'warning',
+            color: 'white',
+            padding: '4px',
+            borderRadius: '4px'
+          }}
+        >
+          {stars} <img src="star-icon.svg" alt="star" style={{ marginLeft: '4px' }} />
+        </div>
+        <p style={{ fontSize: '14px', color: 'light-gray', marginLeft: '8px' }}>{rating} avaliações</p>
+      </div>
+
+      {priceDiscount ? (
+        <div style={{ marginTop: '16px' }}>
+          <p style={{ fontSize: '32px', color: 'dark-gray-2' }}>{price}</p>
+          <p style={{ fontSize: '16px', color: 'light-gray-2', textDecoration: 'line-through' }}>
+            {priceDiscount}
+          </p>
+        </div>
+      ) : (
+        <p style={{ fontSize: '32px', color: 'dark-gray-2', marginTop: '16px' }}>{price}</p>
+      )}
+
+      <p style={{ fontSize: '14px', color: 'dark-gray-2', marginTop: '16px' }}>{description}</p>
+
+      {children}
+
+      <button
+        className="buy-button"
+        style={{ backgroundColor: 'warning', color: 'white', fontSize: '16px', padding: '10px 20px', marginTop: '16px' }}
+      >
+        Comprar
+      </button>
+    </div>
+  );
+};
+
+BuyBox.propTypes = {
+  name: PropTypes.string.isRequired,
+  reference: PropTypes.string.isRequired,
+  stars: PropTypes.number.isRequired,
+  rating: PropTypes.number.isRequired,
+  price: PropTypes.number.isRequired,
+  priceDiscount: PropTypes.number,
+  description: PropTypes.string.isRequired,
+  children: PropTypes.node
+};
+
+export default BuyBox;
+
+
+=> SEGUNDA PARTE
+
+
+function ProductsPage() {}
+const ProductsPage = () => {
+  return (
+    <div>
+      <BuyBox>
+        name="Nome do Produto"
+        reference="REF123"
+        stars={4}
+        rating={23}
+        price={199.99}
+        priceDiscount={149.99}
+        description="Descrição do produto aqui."
+        </BuyBox>
+        </div>
+      );
+    };
+    
+    export default ProductsPage;
